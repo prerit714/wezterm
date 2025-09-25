@@ -14,10 +14,9 @@ end
 
 -- Font config
 config.color_scheme = "Vacuous 2 (terminal.sexy)"
-local best_font = "IosevkaTermSlab Nerd Font Mono"
+local best_font = "Aporetic Sans Mono"
 config.font = wezterm.font(best_font, {
   stretch = "Expanded",
-  weight = "Medium",
 })
 config.font_size = 24
 
@@ -29,8 +28,29 @@ config.window_padding = {
   bottom = 0,
 }
 
--- Hide native tabs since I use tmux
-config.enable_tab_bar = false
+config.enable_tab_bar = true
+config.tab_bar_at_bottom = true
+config.use_fancy_tab_bar = false
+config.hide_tab_bar_if_only_one_tab = false
+
+-- Make transparent tab bar
+config.colors = {
+  tab_bar = {
+    background = "rgba(0, 0, 0, 0.0)",
+    inactive_tab = {
+      bg_color = "rgba(0, 0, 0, 0.2)",
+      fg_color = "#808080",
+    },
+    active_tab = {
+      bg_color = "rgba(0, 0, 0, 0.4)",
+      fg_color = "#FFFFFF",
+    },
+    new_tab = {
+      bg_color = "rgba(0, 0, 0, 0.2)",
+      fg_color = "#808080",
+    },
+  }
+}
 
 -- Config I like for my mac
 config.window_decorations = "RESIZE|MACOS_FORCE_SQUARE_CORNERS"
@@ -56,5 +76,23 @@ config.background = {
     height = "100%",
   },
 }
+
+-- Setup launcher with ALT + L
+config.keys = {
+  {
+    key = "l",
+    mods = "ALT",
+    action = wezterm.action.ShowLauncher,
+  },
+}
+
+-- On press key "X" [1, 8] do action wezterm.action.ActivateTab(X)
+for i = 1, 8 do
+  table.insert(config.keys, {
+    key = tostring(i),
+    mods = "ALT",
+    action = wezterm.action.ActivateTab(i - 1),
+  })
+end
 
 return config
