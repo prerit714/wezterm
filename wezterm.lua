@@ -14,9 +14,12 @@ end
 
 -- Font config
 config.color_scheme = "Vacuous 2 (terminal.sexy)"
-local best_font = "Aporetic Sans Mono"
+
+local best_font = "FiraCode Nerd Font Mono"
+
 config.font = wezterm.font(best_font, {
   stretch = "Expanded",
+  weight = "Bold", -- I love bold fonts
 })
 config.font_size = 24
 
@@ -65,7 +68,7 @@ local config_dir = wezterm.config_dir or wezterm.home_dir .. '/.config/wezterm'
 config.background = {
   {
     source = {
-      File = config_dir .. '/female-v.jpg',
+      File = config_dir .. '/stellar-blade-01.jpg',
     },
     hsb = {
       hue = 1.0,
